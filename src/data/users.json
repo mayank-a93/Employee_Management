@@ -1,9 +1,8 @@
 {
-    "1": {
+    "mayank1": {
         "Name": "Mayank",
         "Phone": "9620669866",
         "Type": "Employee",
-        "UID": "mayank1",
         "Password": "asd123"
     }
 }
