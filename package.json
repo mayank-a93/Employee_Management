@@ -1,0 +1,24 @@
+{
+  "name": "employeemgmt",
+  "version": "1.0.0",
+  "description": "Simple app using node and express",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayank-a93/Employee_Management.git"
+  },
+  "author": "Mayank Agarwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mayank-a93/Employee_Management/issues"
+  },
+  "homepage": "https://github.com/mayank-a93/Employee_Management#readme"
+}
