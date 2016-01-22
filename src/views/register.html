@@ -14,15 +14,15 @@
             <form action="registerUser" method="post" class="form form--login">
                 <div class="form__field">
                     <label class="fontawesome-user" for="login__name"><span class="hidden"></span></label>
-                    <input id="login__name" name="name" type="text" class="form__input" placeholder="Name" required>
+                    <input id="login__name" name="nam" type="text" pattern="^[a-zA-Z]{3,}" title="Minimum 3 characters long" class="form__input" placeholder="Name" required>
                 </div>
                 <div class="form__field">
                     <label class="fontawesome-phone" for="login__number"><span class="hidden"></span></label>
-                    <input id="login__number" name="phno" type="number" class="form__input" placeholder="Phone Number" required>
+                    <input id="login__number" name="phno" type="text" pattern="[789][0-9]{9}" title="Valid 10 digit Number" class="form__input" placeholder="Phone Number" required>
                 </div>
                 <div class="form__field">
                     <label class="fontawesome-home" for="login__address"><span class="hidden"></span></label>
-                    <input id="login__type" name="type" type="text" class="form__input" list="types" placeholder="Type">
+                    <input id="login__type" name="typ" type="text" class="form__input" list="types" placeholder="Type" required>
                     <datalist id="types">
                         <option value="Employee">
                         <option value="Human Resource">
@@ -30,11 +30,11 @@
                 </div>
                 <div class="form__field">
                     <label class="fontawesome-user" for="login__username"><span class="hidden"></span></label>
-                    <input id="login__username" name="uid" type="text" class="form__input" placeholder="Username" required>
+                    <input id="login__username" name="uid" type="text" pattern="[a-zA-Z][a-zA-Z0-9]{5,}" title="minimum 6 char long,Start with char" class="form__input" placeholder="Username" required>
                 </div>
                 <div class="form__field">
                     <label class="fontawesome-lock" for="login__password"><span class="hidden"></span></label>
-                    <input id="login__password" name="pass" type="password" class="form__input" placeholder="Password" required>
+                    <input id="login__password" name="pass" type="password" pattern="[a-zA-Z0-9]{6,}" title="minimum 6 characters long" class="form__input" placeholder="Password" required>
                 </div>
                 <div class="form__field">
                     <input type="submit" value="Register" style="width: 45% ; margin-right: 2rem">

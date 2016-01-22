@@ -36,6 +36,27 @@ app.get('/register', function(req, res) {
 
 app.post('/registerUser', function(req, res) {
 	console.log('Got a registeration form!');
+	var user = {
+		'Name': req.body.nam,
+		'Phone': req.body.phno,
+		'Type': req.body.typ,
+		'UID': req.body.uid,
+		'Password': req.body.pass
+	};
+	var users = {};
+	fs.readFile(path.join(__dirname, 'data/users.json'), function(err, data) {
+		if (err)
+			return console.error(err);
+		users = JSON.parse(data);
+		console.log(JSON.stringify(users, null, 4));
+		var len = Object.keys(users).length;
+		console.log("Length : %s", len);
+		users[(len + 1)] = user;
+		console.log(JSON.stringify(users, null, 4));
+		fs.writeFile(path.join(__dirname, 'data/users.json'), JSON.stringify(users, null, 4), function(err) {
+			return console.error(err);
+		})
+	});
 })
 
 
