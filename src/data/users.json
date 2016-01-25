@@ -10,5 +10,11 @@
         "Phone": "9620669866",
         "Type": "Employee",
         "Password": "lkj098"
+    },
+    "tyuasd": {
+        "Name": "qwe",
+        "Phone": "8234567890",
+        "Type": "Employee",
+        "Password": "asd123"
     }
 }

@@ -1,10 +1,8 @@
 var express = require('express');
 var path = require('path');
-var fs = require('fs');
 var bodyParser = require('body-parser');
-var getPage = require('./js/getPage.js')
 var app = express();
-var views = path.join(__dirname, 'views')
+var appconfig = require('./config.js');
 var routes = require('./routes.js');
 
 
@@ -14,6 +12,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes.publicRouter);
 
+app.set('superSecret', appconfig.secret);
 
 var server = app.listen(8081, function() {
 
