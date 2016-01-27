@@ -1,21 +1,38 @@
 var path = require('path');
 var fs = require('fs');
-var views = path.join(__dirname, 'views')
+var appconfig = require('../config.js');
+var MongoClient = require('mongodb').MongoClient;
+var collection;
+// Connection
+MongoClient.connect("mongodb://localhost:27017/EmpDB", function(err, db) {
+	if (err) {
+		return console.dir(err);
+	}
+	collection = db.collection('testc');
+
+});
 
 exports.registerHandler = function(req, res) {
-	res.sendFile(path.join(views, 'register.html'))
+	res.sendFile(path.join(appconfig.views, 'register.html'))
 }
 
 exports.registerUserHandler = function(req, res) {
 	console.log('Got a registeration form!');
 	var user = {
 		'Name': req.body.nam,
-		'Phone': req.body.phno,
 		'Type': req.body.typ,
-		'Password': req.body.pass
+		'Phone': req.body.phno,
+		'Password': req.body.pass,
+		'Remarks': [],
+		'Status': "Actve"
 	};
-	var users = {};
-	fs.readFile(path.join(__dirname, 'data/users.json'), function(err, data) {
+
+	collection.insert(user);
+
+
+
+	/*var users = {};
+	fs.readFile(appconfig.jsonFile, function(err, data) {
 		if (err)
 			return console.error(err);
 		users = JSON.parse(data);
@@ -23,7 +40,7 @@ exports.registerUserHandler = function(req, res) {
 			console.log('User does not exist');
 			users[req.body.uid] = user;
 			console.log(JSON.stringify(users, null, 4));
-			fs.writeFile(path.join(__dirname, 'data/users.json'), JSON.stringify(users, null, 4), function(err) {
+			fs.writeFile(appconfig.jsonFile, JSON.stringify(users, null, 4), function(err) {
 				return console.error(err);
 			})
 		} else {
@@ -31,5 +48,5 @@ exports.registerUserHandler = function(req, res) {
 		}
 		console.log('Successfully registered');
 		res.redirect('/login');
-	});
+	});*/
 }

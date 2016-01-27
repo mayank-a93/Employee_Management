@@ -16,5 +16,11 @@
         "Phone": "8234567890",
         "Type": "Employee",
         "Password": "asd123"
+    },
+    "aaa123": {
+        "Name": "admin",
+        "Phone": "8907654321",
+        "Type": "Human Resource",
+        "Password": "asd123"
     }
 }

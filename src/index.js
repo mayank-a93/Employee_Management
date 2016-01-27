@@ -3,16 +3,18 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var appconfig = require('./config.js');
-var routes = require('./routes.js');
+var routes = require('./routes/routes.js');
+var privateRoutes = require('./routes/privateRoutes.js');
 
-
+app.set('superSecret', appconfig.secret);
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/home', privateRoutes.privateRouter);
 app.use('/', routes.publicRouter);
 
-app.set('superSecret', appconfig.secret);
 
 var server = app.listen(8081, function() {
 
