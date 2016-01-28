@@ -1,4 +1,4 @@
-var appconfig = require('../config.js');
+var appconfig = require('../config/appconfig.js');
 var path = require('path');
 var Cookies = require('cookies')
 var jwt = require('jsonwebtoken');

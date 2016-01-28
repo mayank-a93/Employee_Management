@@ -1,8 +1,7 @@
 var path = require('path');
 
 var appconfig = {};
-appconfig.views = path.join(__dirname, 'views')
-appconfig.jsonFile = path.join(__dirname, 'data/users.json')
+appconfig.views = path.join(process.cwd(), 'views')
 appconfig.secret = 'WorshipTheDevil';
 appconfig.dbConnectionUrl = 'mongodb://localhost:27017/EmpDB';
 module.exports = appconfig;

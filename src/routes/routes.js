@@ -1,6 +1,6 @@
 var registerService = require('../js/register.js')
 var loginService = require('../js/login.js')
-var appconfig = require('../config.js');
+var appconfig = require('../config/appconfig.js');
 var path = require('path');
 
 var exports = module.exports = {}

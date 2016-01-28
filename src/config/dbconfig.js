@@ -1,5 +1,5 @@
 var path = require('path');
-var appconfig = require('./config.js');
+var appconfig = require('./appconfig.js');
 var mongo = require('mongodb').MongoClient;
 var collection;
 var dbUrl = appconfig.dbConnectionUrl;

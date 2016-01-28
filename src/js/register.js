@@ -1,8 +1,8 @@
 var path = require('path');
 var fs = require('fs');
-var appconfig = require('../config.js');
-var mongo = require('../dbconfig.js');
-var AccountDbFunctions = require('../dbFunctions.js');
+var appconfig = require('../config/appconfig.js');
+var mongo = require('../config/dbconfig.js');
+var AccountDbFunctions = require('../dataStore/dbFunctions.js');
 
 exports.registerHandler = function(req, res) {
 	res.sendFile(path.join(appconfig.views, 'register.html'))

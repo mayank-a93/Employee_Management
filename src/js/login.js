@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs');
 var Cookies = require('cookies')
 var jwt = require('jsonwebtoken');
-var appconfig = require('../config.js');
+var appconfig = require('../config/appconfig.js');
 
 
 exports.loginHandler = function(req, res) {

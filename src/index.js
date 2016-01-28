@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-var mongo = require('./dbconfig.js')
-var appconfig = require('./config.js');
+var mongo = require('./config/dbconfig.js')
+var appconfig = require('./config/appconfig.js');
 var routes = require('./routes/routes.js');
 var privateRoutes = require('./routes/privateRoutes.js');
 
@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({
 
 app.use('/home', privateRoutes.privateRouter);
 app.use('/', routes.publicRouter);
-
 
 function callback(isSuccess) {
 	if (isSuccess) {
