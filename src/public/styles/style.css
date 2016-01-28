@@ -59,6 +59,7 @@ input {
 
 .form input[type="password"],
 .form input[type="text"],
+.form input[type="email"],
 .form input[type="submit"],
 .form input[type="reset"],
 .form input[type="button"],
@@ -72,6 +73,7 @@ input {
 
 .form--login label,
 .form--login input[type="text"],
+.form--login input[type="email"],
 .form--login input[type="password"],
 .form--login input[type="submit"],
 .form--login input[type="reset"],
@@ -90,6 +92,7 @@ input {
 }
 
 .form--login input[type="text"],
+.form--login input[type="email"],
 .form--login input[type="password"],
 .form input[type="number"] {
     background-color: #3b4148;
@@ -99,6 +102,8 @@ input {
 
 .form--login input[type="text"]:focus,
 .form--login input[type="text"]:hover,
+.form--login input[type="email"]:focus,
+.form--login input[type="email"]:hover,
 .form--login input[type="password"]:focus,
 .form--login input[type="password"]:hover,
 .form--login input[type="number"]:focus,

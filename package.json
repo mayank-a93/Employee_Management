@@ -1,11 +1,15 @@
 {
-  "name": "employeemgmt",
+  "name": "employee_management",
   "version": "1.0.0",
-  "description": "Simple app using node and express",
+  "description": "Simple Employee Management system using node",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.5.4",
     "body-parser": "^1.14.2",
-    "express": "^4.13.3"
+    "cookies": "^0.5.1",
+    "mongodb": "^2.1.4",
+    "mongoose": "^4.3.7"
   },
   "devDependencies": {},
   "scripts": {

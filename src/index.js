@@ -1,25 +1,34 @@
 var express = require('express');
+var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-var app = express();
+var mongo = require('./dbconfig.js')
 var appconfig = require('./config.js');
 var routes = require('./routes/routes.js');
 var privateRoutes = require('./routes/privateRoutes.js');
 
+
+mongo.connectToDb(callback);
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('superSecret', appconfig.secret);
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/home', privateRoutes.privateRouter);
 app.use('/', routes.publicRouter);
 
 
-var server = app.listen(8081, function() {
+function callback(isSuccess) {
+	if (isSuccess) {
+		var server = app.listen(8081, function() {
+			var host = server.address().address;
+			var port = server.address().port;
 
-	var host = server.address().address;
-	var port = server.address().port;
-
-	console.log('My server is listening at http://%s:%s', host, port);
-})
+			console.log('My server is listening at http://%s:%s', host, port);
+		});
+	} else {
+		console.log("Db connection failed")
+	}
+}
