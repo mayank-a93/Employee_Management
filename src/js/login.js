@@ -1,9 +1,10 @@
 var path = require('path');
-var fs = require('fs');
 var Cookies = require('cookies')
 var jwt = require('jsonwebtoken');
 var appconfig = require('../config/appconfig.js');
-
+var mongo = require('../config/dbconfig.js');
+var DbFunctions = require('../dataStore/dbFunctions.js');
+var cookies;
 
 exports.loginHandler = function(req, res) {
 	res.sendFile(path.join(appconfig.views, 'login.html'))
@@ -11,68 +12,48 @@ exports.loginHandler = function(req, res) {
 
 exports.loginUserHandler = function(req, res) {
 	console.log('Got a Login form!');
-	cookies = new Cookies(req, res)
 	var user = {
-		username: req.body.uid,
+		email: req.body.email,
 		password: req.body.pass
 	};
-	Authenticate(user, res);
+	cookies = new Cookies(req, res);
+	DbFunctions.loginQuery(mongo.dbCon, user, res, Authenticate);
 }
 
 exports.loginAdminHandler = function(req, res) {
 	console.log('Got a Admin Login form!');
-	cookies = new Cookies(req, res)
 	var user = {
-		username: req.body.uid,
+		email: req.body.email,
 		password: req.body.pass
 	};
-	AuthenticateAdmin(user, res);
+	cookies = new Cookies(req, res);
+	DbFunctions.loginAdminQuery(mongo.dbCon, user, res, AuthenticateAdmin);
 }
 
-function Authenticate(user, res) {
-	fs.readFile(appconfig.jsonFile, function(err, data) {
-		if (err) {
-			return console.error(err);
-		} else {
-			data = JSON.parse(data);
-			if (data[user.username] == undefined)
-				console.log('No such userID');
-			else if (data[user.username].Password != user.password)
-				console.log("Passwords dont match");
-			else {
-				console.log('successful login');
-				data[user.username].Password = null;
-				var token = jwt.sign(data[user.username], appconfig.secret, {
-					expiresIn: 3600 // expires in 1 hour
-				});
-				cookies.set('auth_token', token);				
-				res.redirect('/home');
-			}
-		}
-	});
+function Authenticate(isSuccess, res, result) {
+	if (isSuccess) {
+		console.log("success");
+		result.Password = null;
+		var token = jwt.sign(result, appconfig.secret, {
+			expiresIn: 300 // expires in 5 mins
+		});
+		cookies.set('auth_token', token);
+		res.redirect('/user/');
+	} else {
+		console.log("Incorrect Username or Password");
+	}
 }
 
-function AuthenticateAdmin(user, res) {
-	fs.readFile(appconfig.jsonFile, function(err, data) {
-		if (err) {
-			return console.error(err);
-		} else {
-			data = JSON.parse(data);
-			if (data[user.username] == undefined)
-				console.log('No such userID');
-			else if (data[user.username].Type != "Human Resource")
-				console.log("User is not Admin.");
-			else if (data[user.username].Password != user.password)
-				console.log("Passwords dont match");
-			else {
-				console.log('successful login');
-				data[user.username].Password = null;
-				var token = jwt.sign(data[user.username], appconfig.secret, {
-					expiresIn: 3600 // expires in 1 hour
-				});
-				cookies.set('auth_token', token);				
-				res.send(JSON.stringify(data,null,4))
-			}
-		}
-	});
+function AuthenticateAdmin(isSuccess, res, result) {
+	if (isSuccess) {
+		console.log("success");
+		result.Password = null;
+		var token = jwt.sign(result, appconfig.secret, {
+			expiresIn: 300 // expires in 5 mins
+		});
+		cookies.set('auth_token', token);
+		res.redirect('/admin/');
+	} else {
+		console.log("Incorrect Username or Password");
+	}
 }

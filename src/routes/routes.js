@@ -9,7 +9,7 @@ exports.publicRouter = require('express').Router();
 exports.publicRouter.get('/', function(req, res) {
 	res.sendFile(path.join(appconfig.views, 'index.html'))
 });
-exports.publicRouter.get('/admin', function(req, res) {
+exports.publicRouter.get('/adminLogin', function(req, res) {
 	res.sendFile(path.join(appconfig.views, 'adminLogin.html'))
 });
 exports.publicRouter.post('/loginAdmin', loginService.loginAdminHandler);

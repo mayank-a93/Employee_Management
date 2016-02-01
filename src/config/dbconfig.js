@@ -1,7 +1,6 @@
 var path = require('path');
 var appconfig = require('./appconfig.js');
 var mongo = require('mongodb').MongoClient;
-var collection;
 var dbUrl = appconfig.dbConnectionUrl;
 var exports = module.exports = {}
 exports.connectToDb = function(callback) {

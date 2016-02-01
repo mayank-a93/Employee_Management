@@ -4,12 +4,12 @@
   "description": "Simple Employee Management system using node",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.13.3",
-    "jsonwebtoken": "^5.5.4",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.14.2",
     "cookies": "^0.5.1",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.5.4",
     "mongodb": "^2.1.4",
-    "mongoose": "^4.3.7"
   },
   "devDependencies": {},
   "scripts": {

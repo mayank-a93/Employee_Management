@@ -12,30 +12,32 @@ exports.privateRouter.use(function(req, res, next) {
 		var token = cookies.get('auth_token')
 		if (token) {
 			jwt.verify(token, appconfig.secret, function(err, decoded) {
-				if (err) {
+				if (err) {					//token verification failed
 					res.json({
 						success: false,
 						message: 'Authentication failed'
 					})
 					res.end()
-				} else {
-					req.decoded = decoded
-					next()
+				} else {					//token is verified
+					if (decoded.Status == true) {
+						req.decoded = decoded
+						next()
+					} else {				//account is disabled
+						res.json({
+							success: false,
+							message: 'Account is disabled'
+						})
+					}
+
 				}
 			})
-		} else {
-			res.json({
-				success: false,
-				message: 'Authentication failed'
-			})
-			res.end()
+		} else {						//No token
+			res.redirect("/Login")
+			res.end()			
 		}
 	}
 })
 
 exports.privateRouter.get('/', function(req, res) {
-	res.json(req.decoded);	
-})
-exports.privateRouter.get('/Admin', function(req, res) {
-	res.json(req.decoded);	
+	res.json(req.decoded);
 })

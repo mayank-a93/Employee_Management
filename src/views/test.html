@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>Admin Home</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "/admin/getList",
+            success: function(data) {
+                var len = Object.keys(data).length
+                    //window.alert(len);                        
+                for (var i = 0; i < len; i++) {
+                    $("#myTable").append("<tr><td>" + data[i]["_id"] + "</td><td>" + data[i]["Name"] + "</td></tr>");
+                }
+            },
+            error: function() {
+                console.log('process error');
+            }
+        });
+    });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">    
+</head>
+
+<body class="align">
+    <div class="site__container">
+        <div class="grid__container">
+            <h1 class="text--center">Admin</h1>
+            <table id="myTable" border="1" cellpadding="10">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
